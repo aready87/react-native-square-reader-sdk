@@ -221,33 +221,33 @@ installing Reader SDK for iOS, see the [Reader SDK iOS Setup Guide] at
    1. Change the value of **Enable Bitcode** to **NO**.
 1. In Xcode, open the **General** tab for your app target and make sure the
    **Landscape Left** and **Landscape Right** device orientations are supported.
-1. Update your Info.plist with the following key:value pairs in the **Info** tab
+1. Update your Info.plist with the following key:value pairs in the **Information Privacy List** tab
    for your application target to explain why your application requires these
    device permissions:
-   * `NSLocationWhenInUseUsageDescription` : "This app integrates with Square
+   * `Privacy - Location When in Usage Description` : "This app integrates with Square
      for card processing. To protect buyers and sellers, Square requires your
      location to process payments."
-   * `NSMicrophoneUsageDescription` : "This app integrates with Square for card
+   * `Privacy - Microphone Usage Description` : "This app integrates with Square for card
      processing. To swipe magnetic cards via the headphone jack, Square requires
      access to the microphone."
-   * `NSBluetoothPeripheralUsageDescription` : This app integrates with Square
+   * `Privacy - Bluetooth Peripheral Usage Description` : "This app integrates with Square
      for card processing. Square uses Bluetooth to connect your device to
-     compatible hardware.
-   * `NSCameraUsageDescription` : This app integrates with Square for card
+     compatible hardware."
+   * `Privacy - Camera Usage Description` : "This app integrates with Square for card
       processing. Upload your account logo, feature photo and product images
-      with the photos stored on your mobile device.
-   * `NSPhotoLibraryUsageDescription` : This app integrates with Square for card
+      with the photos stored on your mobile device."
+   * `Privacy - Photo Libary Usage Description` : "This app integrates with Square for card
       processing. Upload your account logo, feature photo and product images
-      with the photos stored on your mobile device.
+      with the photos stored on your mobile device."
 1. Update the `application:didFinishLaunchingWithOptions:` method in your app
-   delegate to initialize Reader SDK:
+   delegate **AppDelegate.m** to initialize Reader SDK:
     ```
     #import "AppDelegate.h"
 
     #import <React/RCTBundleURLProvider.h>
     #import <React/RCTRootView.h>
 
-    @import SquareReaderSDK;
+    @import SquareReaderSDK; //ADD import (1 of 2 changes)
 
     @implementation AppDelegate
 
@@ -256,7 +256,7 @@ installing Reader SDK for iOS, see the [Reader SDK iOS Setup Guide] at
 
     // ...
 
-    [SQRDReaderSDK initializeWithApplicationLaunchOptions:launchOptions];
+    [SQRDReaderSDK initializeWithApplicationLaunchOptions:launchOptions]; //Add method (2 of 2 changes)
     return YES;
     }
 
